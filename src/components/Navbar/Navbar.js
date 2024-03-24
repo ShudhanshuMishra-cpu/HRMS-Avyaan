@@ -7,23 +7,51 @@ function Navbar() {
 
 
     const handleButtonClick = () => {
+      console.log('run')
+
         requestNotificationPermission();
       };
       
       
+      // const requestNotificationPermission = () => {
+      //   console.log('hold')
+        
+      //   if (Notification.permission !== 'granted') {
+      //     console.log('permission denied')
+      //     Notification.requestPermission().then((permission) => {
+      //       if (permission === 'granted') {
+      //         showBrowserNotification();
+      //       }
+      //     });
+      //   } else {
+      //     console.log('permission')
+
+      //     showBrowserNotification();
+      //   }
+      // };
+      
+      
+
       const requestNotificationPermission = () => {
+        console.log('hold');
+    
         if (Notification.permission !== 'granted') {
-          Notification.requestPermission().then((permission) => {
-            if (permission === 'granted') {
-              showBrowserNotification();
-            }
-          });
+            console.log('permission denied');
+            Notification.requestPermission().then((permission) => {
+                if (permission === 'granted') {
+                    showBrowserNotification();
+                } else {
+                    console.log('Notification permission denied');
+                }
+            }).catch(err => {
+                console.error('Error requesting notification permission:', err);
+            });
         } else {
-          showBrowserNotification();
+            console.log('permission granted');
+            showBrowserNotification();
         }
-      };
-      
-      
+    };
+
       const showBrowserNotification = () => {
         const notification = new Notification('React Notification', {
           body: 'This is a notification from React!',
@@ -78,8 +106,8 @@ function Navbar() {
             <div id="image_box"></div>
             <FiSettings className='srch'/>
             <FiBell className='fbell'/>
-            <CiLogout className='logoutIcon' onClick={handleLogout} />
-            {/* <CiLogout className='logoutIcon' onClick={handleButtonClick} /> */}
+            {/* <CiLogout className='logoutIcon' onClick={handleLogout} /> */}
+            <CiLogout className='logoutIcon' onClick={handleButtonClick} />
 
 {/* <h4 onClick={handelRefresh}>refresh</h4> */}
             </div>

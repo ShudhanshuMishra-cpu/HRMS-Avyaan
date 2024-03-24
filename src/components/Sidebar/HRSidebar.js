@@ -10,7 +10,7 @@ import io from 'socket.io-client';
 // import addNotification from 'react-push-notification';
 import { AiFillHeart } from "react-icons/ai";
 // import { BsCartCheck } from "react-icons/bs";
-// import { FaWpforms } from "react-icons/fa"
+import { FaWpforms } from "react-icons/fa"
 import { useState  ,useEffect} from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
@@ -96,11 +96,11 @@ const routes = [
 //       },
 //     ],
 //   },
-//   {
-//     path: "/form",
-//     name: "Form",
-//     icon: <FaWpforms />,
-//   },
+  {
+    path: "/mdb",
+    name: "Master Data",
+    icon: <FaWpforms />,
+  },
 //   {
 //     path: "/settings",
 //     name: "Settings",
@@ -174,8 +174,8 @@ const HRSidebar = ({ children }) => {
       console.log(data.data.date);
 
       playAudio();
-      
       NewCandidateNotification( );
+
       // notificationBAr();
       
     });
@@ -185,23 +185,38 @@ const HRSidebar = ({ children }) => {
 
   });
 
+// ..................................................................................................................................................
 
 
 
-  const playAudio = () => {
-    const audio = new Audio(Tone); // Use the imported audio file path
-    
-    audio.play();
+
+
+
+
+
+// ..................................................................................................................................................
+
+
+
+const playAudio = () => {
+  const audio = new Audio(Tone); // Use the imported audio file path
+  
+  audio.play();
 };
-  const NewCandidateNotification = () => {
-   const notify =  document.getElementById('CandidateAdded')
-   notify.classList.add('green-text');
-  //  notify.style.color = 'green'
-   // Add click event listener to change color back to white
-   notify.addEventListener('click', () => {
-       notify.classList.remove('green-text');
-   });
-  };
+const NewCandidateNotification = () => {
+ const notify =  document.getElementById('CandidateAdded')
+ notify.classList.add('green-text');
+//  notify.style.color = 'green'
+ // Add click event listener to change color back to white
+ notify.addEventListener('click', () => {
+     notify.classList.remove('green-text');
+ });
+};
+
+
+
+
+
 
 
   const showAnimation = {

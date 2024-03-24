@@ -92,10 +92,9 @@ const SmartContactManager = () => {
         <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
 
         <div className='nhj-1'>
-            <h1>Smart Contact Manager</h1>
-            <form id="myForm" method="POST" action="{% url 'my_form_view' %}">
-                {/* {% csrf_token %} */}
-                {/* <a href="{% url 'display_data' %}" >Show_data</a> */}
+            <h1 style={{fontStyle:'bold' , fontSize:'40px'}}>Smart Contact Manager</h1>
+            <form id="myForm" method="POST" >
+               
 
                 <div className="card-input">
                     <label htmlFor="Reference" className="card-input__label" style={{fontWeight: 'bolder'}}>Reference_id:</label>
@@ -104,7 +103,7 @@ const SmartContactManager = () => {
 
                 <div className="card-input">
                     <label className="card-input__label" htmlFor="dropdown" style={{fontWeight: 'bolder'}}>Remark:</label>
-                    <select className="card-input__input" id="dropdown" name="dropdown" style={{width: "90%"}}>
+                    <select className="card-input__input" id="dropdown" name="dropdown" style={{width: "93%"}}>
                         <option value="Abusive Cx">Abusive Cx</option>
                         <option value="Busy">Busy</option>
                         <option value="Call Back">Call Back</option>
@@ -132,10 +131,7 @@ const SmartContactManager = () => {
                     <input className=" fgh-1" type="submit" value="Submit"/>
                 </div>
             </form>
-            <form action="{% url 'logout' %}" method="post" id="logoutForm" className='qwe '>
-                {/* {% csrf_token %} */}
-                {/* <button type="submit">Logout</button> */}
-            </form>
+       
             </div>
         </div>
     );

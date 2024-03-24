@@ -11,7 +11,7 @@ const InterviewAssignList = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [remarkModalIsOpen, setRemarkModalIsOpen] = useState(false); // New state for the remark modal
     const [searchInput, setSearchInput] = useState('');
-    
+
     const [formData, setFormData] = useState({
         initiative: 5,
         motivation: 5,
@@ -32,7 +32,7 @@ const InterviewAssignList = () => {
         professionalConnections: 5,
         collaborationWithColleagues: 5,
         contributionToTeamSuccess: 5,
-       
+
         // Other form fields with initial values
     });
 
@@ -47,7 +47,7 @@ const InterviewAssignList = () => {
         }));
     };
 
-// _____________________________________________________________________________________________________________________________________________________________________________________________
+    // _____________________________________________________________________________________________________________________________________________________________________________________________
 
 
 
@@ -66,11 +66,11 @@ const InterviewAssignList = () => {
     }, []);
 
 
-// -__________________________________________________________________________________________________________________________________________________________________________________________________
+    // -__________________________________________________________________________________________________________________________________________________________________________________________________
     // useEffect(() => {
-       
+
     //     console.log(localStorage.getItem('username'));
-    
+
     //     axios.post('http://192.168.2.11:5l050/first/round/particular', {
     //         assignedTo: localStorage.getItem('username'),
     //         department: localStorage.getItem('department')})
@@ -145,7 +145,7 @@ const InterviewAssignList = () => {
         // Send data to API using Axios
         axios.post('http://192.168.2.11:5050/second/round', {
             LastRemarkerName: localStorage.getItem('username'),
-            dateAndTime:localStorage.getItem('DateAndTime') ,
+            dateAndTime: localStorage.getItem('DateAndTime'),
             candidateName: document.getElementById('CandidateName').innerHTML,
             candidateFatherName: document.getElementById('CandidateFatherName').innerHTML,
             candidateDOB: document.getElementById('CandidateDOB').innerHTML,
@@ -180,13 +180,13 @@ const InterviewAssignList = () => {
             <h2>Assigned Interview List</h2>
             <div>
                 <FormControl
-                    style={{ padding: '5px 10px ', marginLeft: '20px' , border: '.5px solid black' , borderRadius:'5px'}} 
+                    style={{ padding: '5px 10px ', marginLeft: '20px', border: '.5px solid black', borderRadius: '5px' }}
                     type="text"
                     placeholder="Search by Candidate Name, Apply Post, Assign By, or Assign To"
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
                 />
-                <Button className='uyhyy' style={{ borderRadius:'5px',padding: '5px 10px ', marginLeft: '20px' }} onClick={handleSearch}>Search</Button>
+                <Button className='uyhyy' style={{ borderRadius: '5px', padding: '5px 10px ', marginLeft: '20px' }} onClick={handleSearch}>Search</Button>
             </div>
             <Table striped bordered hover>
                 <thead>
@@ -204,7 +204,7 @@ const InterviewAssignList = () => {
                             <td>{candidate.ApplyedFor}</td>
                             <td>{candidate.assignedBy}</td>
                             <td>{candidate.assignedTo}</td>
-                            
+
                         </tr>
                     ))}
                 </tbody>
@@ -227,10 +227,81 @@ const InterviewAssignList = () => {
                         <div>
                             <h2>Candidate Details</h2>
                             <p>Name :<span id='CandidateName'>{selectedCandidate.fullName}</span></p>
-                            <p>DOB :<span id='CandidateDOB'>{selectedCandidate.candidateDOB} </span></p>
+                            <p>Age: <span>{selectedCandidate.age}</span></p>
+                            <p>Date Of Birth :<span id='CandidateDOB'>{selectedCandidate.candidateDOB} </span></p>
                             <p>Father's Name :<span id='CandidateFatherName'>{selectedCandidate.candidateFatherName}</span></p>
+                            <p>Correspondence Address: <span>{selectedCandidate.correspondenceAddress}</span></p>
+                            <p>Permanent Address: <span>{selectedCandidate.permanentAddress}</span></p>
+                            <p>Phone Number: <span>{selectedCandidate.phoneNo}</span></p>
+                            <p>Email: <span>{selectedCandidate.email}</span></p>
                             <p>Assigned To :{selectedCandidate.assignedTo}</p>
+                            <p> Qualification: <span>{selectedCandidate.Qualification}</span></p>
                             {/* Add more details here as needed */}
+                        </div>
+
+                        <h3 style={{ fontWeight: 'bold', fontSize: '25px' }}>Work Experience</h3>
+
+                        <div>
+                            <p>Work Experience : <span>{selectedCandidate.workExperience}</span></p>
+
+                            <p>Organization: <span>{selectedCandidate.workExperienceOrganization}</span></p>
+                            <p>Position: <span>{selectedCandidate.workExperiencePosition}</span></p>
+                            {/* <p>Responsibilities: <span>{selectedCandidate.workExperienceResponsibilities}</span></p> */}
+                            <p>From: <span>{selectedCandidate.workExperienceFrom}</span></p>
+                            <p>To: <span>{selectedCandidate.workExperienceTo}</span></p>
+                            <p>Reason for Leaving: <span>{selectedCandidate.workExperienceReasonForLeaving}</span></p>
+                        </div>
+
+                        <h3 style={{ fontWeight: 'bold', fontSize: '25px' }}>Additional Details</h3>
+
+                        <div>
+                            <p>Time Required for Joining: <span>{selectedCandidate.timeRequiredForJoining}</span></p>
+                            <p>Current CTC: <span>{selectedCandidate.currentCTC}</span></p>
+                            <p>Expected CTC: <span>{selectedCandidate.expectedCTC}</span></p>
+                            {/* <p>Status: <span>{selectedCandidate.status}</span></p> */}
+                            {/* <p>1st Interviewer Name: <span>{selectedCandidate.interviewerName}</span></p> */}
+                            <a href={selectedCandidate.url} style={{ cursor: 'pointer', backgroundColor: 'green', padding: '5px 10px' }} target='_blank'>See Resume</a>
+                        </div>
+
+                        <div>
+                        <h3 style={{ fontWeight: 'bold', fontSize: '25px' }}>Round 1 Details</h3>
+
+                        <p>Verbal Communication Skills: <span>{selectedCandidate.verbalCommunication}</span></p>
+            <p>Written Communication Skills: <span>{selectedCandidate.writtenCommunication}</span></p>
+            <p>Active Listening Skills: <span>{selectedCandidate.activeListening}</span></p>
+            <p>Team Collaboration Skills: <span>{selectedCandidate.teamCollaboration}</span></p>
+            <p>Relationship Building Skills: <span>{selectedCandidate.relationshipBuilding}</span></p>
+            <p>Conflict Resolution Skills: <span>{selectedCandidate.conflictResolution}</span></p>
+            <p>Flexibility: <span>{selectedCandidate.flexibility}</span></p>
+            <p>Willingness to Learn: <span>{selectedCandidate.willingnessToLearn}</span></p>
+            <p>Ability to Handle Change: <span>{selectedCandidate.abilityToHandleChange}</span></p>
+            <p>Analytical Thinking: <span>{selectedCandidate.analyticalThinking}</span></p>
+            <p>Critical Reasoning: <span>{selectedCandidate.criticalReasoning}</span></p>
+            <p>Decision Making: <span>{selectedCandidate.decisionMaking}</span></p>
+            <p>Alignment with Values: <span>{selectedCandidate.alignmentWithValues}</span></p>
+            <p>Cultural Fit: <span>{selectedCandidate.culturalFit}</span></p>
+            <p>Commitment to Mission: <span>{selectedCandidate.commitmentToMission}</span></p>
+            <p>Work Ethic: <span>{selectedCandidate.workEthic}</span></p>
+            <p>Integrity: <span>{selectedCandidate.integrity}</span></p>
+            <p>Accountability: <span>{selectedCandidate.accountability}</span></p>
+            <p>Self Awareness: <span>{selectedCandidate.selfAwareness}</span></p>
+            <p>Empathy: <span>{selectedCandidate.empathy}</span></p>
+            <p>Relationship Management: <span>{selectedCandidate.relationshipManagement}</span></p>
+            <p>Proactiveness: <span>{selectedCandidate.proactiveness}</span></p>
+            <p>Willingness For Responsibilities: <span>{selectedCandidate.willingnessForResponsibilities}</span></p>
+            <p>Conflict Resolution Ability: <span>{selectedCandidate.conflictResolutionAbility}</span></p>
+            <p>Constructive Feedback: <span>{selectedCandidate.constructiveFeedback}</span></p>
+            <p>Cultural Awareness: <span>{selectedCandidate.culturalAwareness}</span></p>
+            <p>Sensitivity To Diversity: <span>{selectedCandidate.sensitivityToDiversity}</span></p>
+            <p>Understanding Of Global Perspectives: <span>{selectedCandidate.understandingOfGlobalPerspectives}</span></p>
+            <p>Presentation Skills: <span>{selectedCandidate.presentationSkills}</span></p>
+            <p>Candidate Name: <span>{selectedCandidate.candidateName}</span></p>
+            <p>Candidate Date of Birth: <span>{selectedCandidate.candidateDOB}</span></p>
+            <p>Candidate Father's Name: <span>{selectedCandidate.candidateFatherName}</span></p>
+            <p>Remark: <span>{selectedCandidate.remark}</span></p>
+            <p>Assigned To: <span>{selectedCandidate.assignedTo}</span></p>
+            <p>Department: <span>{selectedCandidate.department}</span></p>
+            <p>Assigned By: <span>{selectedCandidate.assignedBy}</span></p>
                         </div>
                     </div>
                     {/* <Button onClick={handleClosePopup}>Close</Button> */}
@@ -451,18 +522,18 @@ const InterviewAssignList = () => {
 
 
                         <div className="input-group" style={{ width: '20%' }}>
-                <label htmlFor="Status">Status:</label>
-                <select className='hghgch' id="status" name="status" onChange={handleInputChange} required>
-                  <option value="">Select an option</option>
-                  <option value="ON Hold">ON Hold</option>
-                  <option value="Rejected">Rejected</option>
-                  <option value="Selected">Selected</option>
-                 
-                </select>
-              </div>
+                            <label htmlFor="Status">Status:</label>
+                            <select className='hghgch' id="status" name="status" onChange={handleInputChange} required>
+                                <option value="">Select an option</option>
+                                <option value="ON Hold">ON Hold</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="Selected">Selected</option>
+
+                            </select>
+                        </div>
                         {/* <Button onClick={handleRemarkModalClose}>Close</Button> */}
                         <div className='ewdf414'>
-                        <Button className= 'epicOne' onClick={handleAllDataSend}>Submit</Button>
+                            <Button className='epicOne' onClick={handleAllDataSend}>Submit</Button>
                         </div>
                     </div>
                 </Modal>

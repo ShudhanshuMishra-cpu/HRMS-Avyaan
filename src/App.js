@@ -129,7 +129,7 @@ import FinalCandidateList from "./pages/FinalCandidateList";
 import Operation from "./components/Sidebar/Operation";
 import MDSidebar from "./components/Sidebar/DirectorSidebar";
 import Calling from "./pages/Calling";
-
+import MDBData from './pages/MDBData';
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [department, setDepartment] = useState("");
@@ -198,6 +198,7 @@ function App() {
             <Route path="/InterviewAssignList" element={<InterviewAssignList />} />
             {/* <Route path="/final/candidate/list" element={<InterviewAssignList />} /> */}
             <Route path="/final/candidate/list" element={<FinalCandidateList/>} />
+            <Route path="/mdb" element={<MDBData/>} />
 
 
             <Route path="/adminsettings" element={<AdminSettings />} />
